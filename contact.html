@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Shabu Mwangi</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─── RESET & VARIABLES ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-color: #fbfaf8;
+    --text-main: #111111;
+    --text-muted: #666666;
+    --text-light: #999999;
+    --border-color: #e5e4e0;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(251, 250, 248, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand { display: flex; flex-direction: column; text-decoration: none; }
+  .logo { font-family: var(--serif); font-size: 1.8rem; font-weight: 600; color: var(--text-main); line-height: 1; letter-spacing: -0.02em; }
+  .logo-sub { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+
+
+
+  /* ─── BANNER SECTION ─── */
+  .contact-banner {
+    margin-top: 86px; /* Offset for header */
+    position: relative;
+    height: 45vh;
+    min-height: 350px;
+    background-image: url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.5); /* Dark overlay for text readability */
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 10;
+    color: #ffffff;
+    padding: 0 5vw;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .banner-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 500;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .banner-subtitle {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* ─── CONTACT GRID SECTION ─── */
+  .contact-section {
+    padding: 100px 5vw;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+  }
+
+  /* ─── LEFT COLUMN: FORM ─── */
+  .form-wrapper {
+    background: #ffffff;
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+    border: 1px solid var(--border-color);
+  }
+
+  .form-title {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: var(--text-main);
+  }
+
+  .form-group {
+    margin-bottom: 25px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    background: transparent;
+    padding: 12px 0;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--text-light); }
+  .form-group input:focus,
+  .form-group textarea:focus { border-bottom-color: var(--text-main); }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--text-main);
+    color: #fff;
+    border: 1px solid var(--text-main);
+    padding: 18px;
+    margin-top: 15px;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .submit-btn:hover {
+    background: transparent;
+    color: var(--text-main);
+  }
+
+  @media (max-width: 600px) {
+    .form-wrapper { padding: 30px 20px; }
+  }
+
+  /* ─── RIGHT COLUMN: INFO ─── */
+  .info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .info-block {
+    margin-bottom: 40px;
+  }
+
+  .info-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .info-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .info-content {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--text-main);
+    line-height: 1.4;
+  }
+
+  .info-content a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  .info-content a:hover {
+    opacity: 0.6;
+  }
+
+  .info-subtext {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg-color);
+    padding: 60px 5vw 40px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .footer-contact {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+  }
+
+  .footer-contact a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    transition: opacity 0.2s;
+  }
+
+  .footer-contact a:hover { opacity: 0.6; }
+
+  .copyright {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 600px) {
+    .footer-contact { flex-direction: column; gap: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="brand" href="index.html">
+    <span class="logo">Sammy Mutinda</span>
+    <span class="logo-sub">Contemporary Art</span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle">☰</button>
+
+  <nav id="mainNav">
+    <a href="index.html">Collection</a>
+    <a href="about.html" class="active">About</a>
+    <a href="works.html">Works</a>
+    <a href="exhibitions.html">Exhibitions</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- BANNER -->
+<section class="contact-banner">
+  <div class="banner-overlay"></div>
+  <div class="banner-content">
+    <h1 class="banner-title">Studio Enquiries</h1>
+    <p class="banner-subtitle">Private Viewings, Commissions & Acquisitions</p>
+  </div>
+</section>
+
+<!-- CONTACT GRID -->
+<section class="contact-section">
+  <div class="contact-grid">
+    
+    <!-- LEFT: FORM -->
+    <div class="form-wrapper">
+      <h2 class="form-title">Send a Message</h2>
+      <div class="form-group">
+        <input type="text" id="contactName" placeholder="Full Name">
+      </div>
+      <div class="form-group">
+        <input type="email" id="contactEmail" placeholder="Email Address">
+      </div>
+      <div class="form-group">
+        <input type="text" id="contactSubject" placeholder="Subject (e.g. Artwork Inquiry, Exhibition)">
+      </div>
+      <div class="form-group">
+        <textarea id="contactMessage" rows="4" placeholder="Your Message..."></textarea>
+      </div>
+      <button class="submit-btn" id="submitContactBtn">Send Direct Message</button>
+    </div>
+
+    <!-- RIGHT: CONTACT INFO -->
+    <div class="info-wrapper">
+      
+      <div class="info-block">
+        <span class="info-label">Direct Contact</span>
+        <div class="info-content">
+          <a href="mailto:mutindasammy17@gmail.com">mutindasammy17@gmail.com</a><br>
+          <a href="tel:+254710540657">+254 710 540 657</a>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Studio Location</span>
+        <div class="info-content">
+          Nairobi Contemporary Arts District<br>
+          Kenya
+        </div>
+        <div class="info-subtext">
+          Studio visits are strictly by appointment only.<br>Please use the contact form to arrange a viewing.
+        </div>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Follow</span>
+        <div class="info-content">
+          <a href="#" target="_blank">Instagram</a> &nbsp;&middot;&nbsp; 
+          <a href="#" target="_blank">Artsper</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-contact">
+    <a href="mailto:mutindasammy17@gmail.com">mutindasammy17@gmail.com</a>
+    <a href="tel:+254710540657">+254 710 540 657</a>
+  </div>
+  <p class="copyright">&copy; 2024 Shabu Mwangi Studio. All rights reserved.</p>
+</footer>
+
+<script>
+  // High-Converting Form Logic -> Directs immediately to WhatsApp
+  const submitBtn = document.getElementById('submitContactBtn');
+
+  submitBtn.addEventListener('click', () => {
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const subject = document.getElementById('contactSubject').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+
+    if (!name || !email || !message) {
+      alert("Please fill in your name, email, and message before sending.");
+      return;
+    }
+
+    // Artist's WhatsApp Number (Update this to the actual number)
+    const WA_NUMBER = "254710540657"; 
+    
+    // Formatting the message for WhatsApp
+    const text = `*New Studio Enquiry*\n\n*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject || 'General Inquiry'}\n\n*Message:*\n${message}`;
+    
+    // Create WhatsApp URL and open in a new tab
+    const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+    
+    // Optional: Clear the form after sending
+    document.getElementById('contactName').value = '';
+    document.getElementById('contactEmail').value = '';
+    document.getElementById('contactSubject').value = '';
+    document.getElementById('contactMessage').value = '';
+  });
+</script>
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  document.querySelectorAll('#mainNav a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+</script>
+</body>
+</html>

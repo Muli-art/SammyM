@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exhibitions — Sammy Mutinda</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET & VARIABLES ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-color: #fbfaf8;
+  --text-main: #111111;
+  --text-muted: #666666;
+  --text-light: #999999;
+  --border-color: #e5e4e0;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+  --transition: all 0.3s ease-in-out;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg-color);
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── HEADER ─── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(251, 250, 248, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.logo-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+
+/* ─── PAGE TITLE BLOCK ─── */
+.page-title-block {
+  margin-top: 80px;
+  padding: 56px 5vw 40px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.page-title-block h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.page-title-block h1 em {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.page-title-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.page-title-meta span {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+/* ─── SLIDING BANNER ─── */
+.banner-track-outer {
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--text-main);
+  padding: 14px 0;
+  position: relative;
+}
+
+/* Fade edges */
+.banner-track-outer::before,
+.banner-track-outer::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.banner-track-outer::before { left: 0; background: linear-gradient(to right, #111 0%, transparent 100%); }
+.banner-track-outer::after  { right: 0; background: linear-gradient(to left, #111 0%, transparent 100%); }
+
+.banner-track {
+  display: flex;
+  width: max-content;
+  animation: slideLeft 32s linear infinite;
+}
+
+.banner-track:hover { animation-play-state: paused; }
+
+@keyframes slideLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.banner-item {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 36px;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+
+.banner-item-title {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(251,250,248,0.9);
+  font-style: italic;
+}
+
+.banner-item-venue {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(251,250,248,0.38);
+}
+
+.banner-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+
+/* ─── SECTION LABEL ─── */
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+/* ─── UPCOMING SECTION ─── */
+.upcoming-section {
+  padding: 60px 5vw;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* If no upcoming shows: the block simply collapses — no empty space */
+.upcoming-section:empty,
+.upcoming-section.no-shows {
+  display: none;
+}
+
+.upcoming-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .upcoming-grid { grid-template-columns: 1fr; }
+}
+
+/* Featured upcoming card */
+.upcoming-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.upcoming-card-img {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+}
+
+.upcoming-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.55;
+  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s;
+}
+
+.upcoming-card:hover .upcoming-card-img img {
+  transform: scale(1.05);
+  opacity: 0.65;
+}
+
+.upcoming-card-body {
+  padding: 28px 28px 24px;
+  background: var(--text-main);
+  color: var(--bg-color);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upcoming-status {
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(251,250,248,0.4);
+  margin-bottom: 4px;
+}
+
+.upcoming-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: rgba(251,250,248,0.92);
+}
+
+.upcoming-venue {
+  font-size: 0.82rem;
+  color: rgba(251,250,248,0.5);
+}
+
+.upcoming-dates {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: rgba(251,250,248,0.35);
+  margin-top: 4px;
+}
+
+.upcoming-btn {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border: 1px solid rgba(251,250,248,0.22);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(251,250,248,0.7);
+  text-decoration: none;
+  transition: var(--transition);
+  align-self: flex-start;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--sans);
+}
+
+.upcoming-btn:hover {
+  border-color: rgba(251,250,248,0.6);
+  color: rgba(251,250,248,1);
+}
+
+/* Small upcoming (second card if exists) */
+.upcoming-card.small .upcoming-card-img { aspect-ratio: 3/2; }
+.upcoming-card.small .upcoming-title { font-size: 1.15rem; }
+
+/* ─── PAST EXHIBITIONS — GRID ─── */
+.past-grid-section {
+  padding: 60px 5vw;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.past-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) { .past-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .past-grid { grid-template-columns: 1fr; } }
+
+.past-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--text-main);
+  group: '';
+}
+
+.past-card-img {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--border-color);
+  position: relative;
+}
+
+.past-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.past-card:hover .past-card-img img { transform: scale(1.06); }
+
+.past-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17,17,17,0);
+  transition: background 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.past-card:hover .past-card-overlay { background: rgba(17,17,17,0.35); }
+
+.past-card-view {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding-bottom: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s, transform 0.35s;
+}
+
+.past-card:hover .past-card-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.past-card-info {
+  padding: 18px 0 0;
+}
+
+.past-card-year {
+  font-size: 0.62rem;
+  font-family: var(--sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+.past-card-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 4px;
+  color: var(--text-main);
+}
+
+.past-card-venue {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.past-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.past-card-btn:hover { border-color: var(--text-main); }
+
+.past-card-btn svg {
+  transition: transform 0.2s;
+}
+
+.past-card:hover .past-card-btn svg { transform: translateX(3px); }
+
+/* ─── PAST EXHIBITIONS — TEXT LIST ─── */
+.past-list-section {
+  padding: 60px 5vw 80px;
+}
+
+.past-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.past-list-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: baseline;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-color);
+  text-decoration: none;
+  color: var(--text-main);
+  transition: background 0.2s;
+  position: relative;
+}
+
+.past-list-item::before {
+  content: '';
+  position: absolute;
+  left: -5vw; right: -5vw;
+  top: 0; bottom: 0;
+  background: transparent;
+  transition: background 0.2s;
+  z-index: 0;
+}
+
+.past-list-item:hover::before { background: #f4f3f0; }
+
+.past-list-item > * { position: relative; z-index: 1; }
+
+.past-list-year {
+  font-size: 0.7rem;
+  font-family: var(--sans);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding-top: 2px;
+}
+
+.past-list-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.past-list-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-main);
+  transition: color 0.2s;
+}
+
+.past-list-item:hover .past-list-title { color: var(--text-muted); }
+
+.past-list-venue {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.past-list-type {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding: 3px 10px;
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+  align-self: center;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.past-list-item:hover .past-list-type { border-color: var(--text-muted); color: var(--text-muted); }
+
+.past-list-arrow {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  align-self: center;
+  transition: transform 0.2s, color 0.2s;
+  margin-left: 12px;
+}
+
+.past-list-item:hover .past-list-arrow { transform: translateX(4px); color: var(--text-main); }
+
+@media (max-width: 600px) {
+  .past-list-item {
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+  }
+  .past-list-type { display: none; }
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--bg-color);
+  border-top: 1px solid var(--border-color);
+  padding: 48px 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-contact { display: flex; flex-direction: column; gap: 6px; }
+
+.footer-contact a {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-contact a:hover { color: var(--text-main); }
+
+.copyright {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  letter-spacing: 0.08em;
+}
+
+/* ─── FADE-IN ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade { opacity: 0; }
+.fade.visible {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.fade-d1 { animation-delay: 0.05s; }
+.fade-d2 { animation-delay: 0.12s; }
+.fade-d3 { animation-delay: 0.2s; }
+.fade-d4 { animation-delay: 0.28s; }
+
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <a class="brand" href="index.html">
+    <span class="logo">Sammy Mutinda</span>
+    <span class="logo-sub">Contemporary Art</span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle">☰</button>
+
+  <nav id="mainNav">
+    <a href="index.html">Collection</a>
+    <a href="about.html" class="active">About</a>
+    <a href="works.html">Works</a>
+    <a href="exhibitions.html">Exhibitions</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- ─── PAGE TITLE ─── -->
+<div class="page-title-block">
+  <h1>Exhibitions<br><em>&amp; Showings</em></h1>
+  <div class="page-title-meta">
+    <span>2013 — Present</span>
+    <span>Solo &amp; Group</span>
+  </div>
+</div>
+
+<!-- ─── SLIDING BANNER ─── -->
+<div class="banner-track-outer">
+  <div class="banner-track" id="bannerTrack">
+    <!-- Items duplicated by JS for seamless loop -->
+  </div>
+</div>
+
+<!-- ─── UPCOMING EXHIBITIONS ─── -->
+<!--
+  INSTRUCTIONS FOR ARTIST / EDITOR:
+  If there are no upcoming shows, set upcomingShows = [] in the script below.
+  The entire upcoming section will automatically disappear — no empty gap.
+-->
+<section class="upcoming-section" id="upcomingSection">
+  <div class="section-label">Upcoming Exhibitions</div>
+  <div class="upcoming-grid" id="upcomingGrid"></div>
+</section>
+
+<!-- ─── PAST EXHIBITIONS — IMAGE GRID ─── -->
+<section class="past-grid-section">
+  <div class="section-label">Selected Past Exhibitions</div>
+  <div class="past-grid" id="pastGrid"></div>
+</section>
+
+<!-- ─── PAST EXHIBITIONS — TEXT LIST ─── -->
+<section class="past-list-section">
+  <div class="section-label">Full Exhibition Record</div>
+  <div class="past-list" id="pastList"></div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-contact">
+    <a href="mailto:mutindasammy17@gmail.com">mutindasammy17@gmail.com</a>
+    <a href="tel:+254710540657">+254 710 540 657</a>
+  </div>
+  <p class="copyright">&copy; 2025 Sammy Mutinda. All rights reserved.</p>
+</footer>
+
+
+<script>
+
+/* ═══════════════════════════════════════════════════════
+   DATA — edit here to add / remove exhibitions
+   ═══════════════════════════════════════════════════════ */
+
+/* UPCOMING — set to [] if none; section auto-hides */
+const upcomingShows = [
+  {
+    title: "Soil and Memory",
+    venue: "Nairobi National Museum Gallery",
+    location: "Nairobi, Kenya",
+    dates: "15 Aug — 12 Oct 2025",
+    type: "Solo",
+    img: "10.JPG",
+    link: "#soil-and-memory"
+  },
+  {
+    title: "New Geographies II",
+    venue: "Galerie Voss",
+    location: "Düsseldorf, Germany",
+    dates: "3 Sep — 20 Sep 2025",
+    type: "Group",
+    img: "11.JPG",
+    link: "#new-geographies-ii"
+  }
+];
+
+/* PAST — grid shows first 4; full list shows all */
+const pastShows = [
+  {
+    year: "2024",
+    title: "Soil and Sky",
+    venue: "Circle Art Gallery",
+    location: "Nairobi, Kenya",
+    type: "Solo",
+    img: "1.JPG",
+    link: "#soil-and-sky"
+  },
+  {
+    year: "2023",
+    title: "The Body Remembers",
+    venue: "ARTSPLIT Lagos",
+    location: "Lagos, Nigeria",
+    type: "Solo",
+    img: "11.JPG",
+    link: "#body-remembers"
+  },
+  {
+    year: "2023",
+    title: "New Geographies",
+    venue: "Galerie Voss",
+    location: "Düsseldorf, Germany",
+    type: "Group",
+    img: "12.JPG",
+    link: "#new-geographies"
+  },
+  {
+    year: "2022",
+    title: "African Futures",
+    venue: "1-54 Contemporary African Art Fair",
+    location: "London, UK",
+    type: "Group",
+    img: "14.JPG",
+    link: "#african-futures"
+  },
+  {
+    year: "2021",
+    title: "Nocturne",
+    venue: "Kuona Trust Centre for the Arts",
+    location: "Nairobi, Kenya",
+    type: "Solo",
+    img: "15.JPG",
+    link: "#nocturne"
+  },
+  {
+    year: "2020",
+    title: "Pandemic Archives",
+    venue: "Online / International",
+    location: "Digital",
+    type: "Group",
+    img: "16.JPG",
+    link: "#pandemic-archives"
+  },
+  {
+    year: "2019",
+    title: "Triangle Arts Residency",
+    venue: "Triangle Arts Trust",
+    location: "Brooklyn, New York",
+    type: "Residency",
+    img: "10.JPG",
+    link: "#triangle-residency"
+  },
+  {
+    year: "2018",
+    title: "Red Hours",
+    venue: "GoDown Arts Centre",
+    location: "Nairobi, Kenya",
+    type: "Solo",
+    img: "1.JPG",
+    link: "#red-hours"
+  },
+  {
+    year: "2017",
+    title: "Künstlerhaus Bethanien",
+    venue: "Künstlerhaus Bethanien",
+    location: "Berlin, Germany",
+    type: "Residency",
+    img: "11.JPG",
+    link: "#bethanien"
+  },
+  {
+    year: "2016",
+    title: "East African Contemporary",
+    venue: "Alliance Française",
+    location: "Nairobi, Kenya",
+    type: "Group",
+    img: ".JPG",
+    link: "#east-african-contemporary"
+  },
+  {
+    year: "2015",
+    title: "Emergence",
+    venue: "Nairobi Gallery",
+    location: "Nairobi, Kenya",
+    type: "Solo",
+    img: ".JPG",
+    link: "#emergence"
+  },
+  {
+    year: "2013",
+    title: "Debut Group Show",
+    venue: "University of Nairobi Arts",
+    location: "Nairobi, Kenya",
+    type: "Group",
+    img: ".JPG",
+    link: "#debut"
+  }
+];
+
+/* ═══════════════════════════════════════════════════════
+   BANNER — built from all shows (upcoming + past)
+   ═══════════════════════════════════════════════════════ */
+const allShows = [
+  ...upcomingShows.map(s => ({ ...s, tag: "Upcoming" })),
+  ...pastShows.map(s => ({ ...s, tag: s.year }))
+];
+
+function buildBanner() {
+  const track = document.getElementById('bannerTrack');
+  // Build items twice for seamless loop
+  [0, 1].forEach(() => {
+    allShows.forEach(s => {
+      const item = document.createElement('div');
+      item.className = 'banner-item';
+      item.innerHTML = `
+        <span class="banner-item-venue">${s.tag}</span>
+        <span class="banner-dot"></span>
+        <span class="banner-item-title">${s.title}</span>
+        <span class="banner-dot"></span>
+        <span class="banner-item-venue">${s.venue}, ${s.location}</span>
+      `;
+      track.appendChild(item);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   UPCOMING — auto-hides if empty
+   ═══════════════════════════════════════════════════════ */
+function buildUpcoming() {
+  const section = document.getElementById('upcomingSection');
+  const grid    = document.getElementById('upcomingGrid');
+
+  if (!upcomingShows.length) {
+    section.style.display = 'none';
+    return;
+  }
+
+  upcomingShows.forEach((s, i) => {
+    const card = document.createElement('a');
+    card.href = s.link;
+    card.className = 'upcoming-card fade fade-d' + (i + 1);
+    card.innerHTML = `
+      <div class="upcoming-card-img">
+        <img src="${s.img}" alt="${s.title}" loading="lazy">
+      </div>
+      <div class="upcoming-card-body">
+        <span class="upcoming-status">${s.type} Exhibition · Upcoming</span>
+        <div class="upcoming-title">${s.title}</div>
+        <div class="upcoming-venue">${s.venue} — ${s.location}</div>
+        <div class="upcoming-dates">${s.dates}</div>
+        <span class="upcoming-btn">
+          View Artwork
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   PAST — IMAGE GRID (first 4 only)
+   ═══════════════════════════════════════════════════════ */
+function buildPastGrid() {
+  const grid = document.getElementById('pastGrid');
+  pastShows.slice(0, 4).forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = 'past-card fade fade-d' + (i + 1);
+    card.innerHTML = `
+      <div class="past-card-img">
+        <img src="${s.img}" alt="${s.title}" loading="lazy">
+        <div class="past-card-overlay">
+          <span class="past-card-view">View Exhibition</span>
+        </div>
+      </div>
+      <div class="past-card-info">
+        <div class="past-card-year">${s.type} · ${s.year}</div>
+        <div class="past-card-title">${s.title}</div>
+        <div class="past-card-venue">${s.venue}, ${s.location}</div>
+        <a href="${s.link}" class="past-card-btn">
+          View Artwork
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   PAST — TEXT LIST (all)
+   ═══════════════════════════════════════════════════════ */
+function buildPastList() {
+  const list = document.getElementById('pastList');
+  pastShows.forEach(s => {
+    const item = document.createElement('a');
+    item.href = s.link;
+    item.className = 'past-list-item';
+    item.innerHTML = `
+      <span class="past-list-year">${s.year}</span>
+      <div class="past-list-main">
+        <span class="past-list-title">${s.title}</span>
+        <span class="past-list-venue">${s.venue} — ${s.location}</span>
+      </div>
+      <span class="past-list-type">${s.type}</span>
+      <span class="past-list-arrow">→</span>
+    `;
+    list.appendChild(item);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════════════════ */
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+}
+
+/* ─── INIT ─── */
+buildBanner();
+buildUpcoming();
+buildPastGrid();
+buildPastList();
+// Small delay so elements are in DOM before reveal wires up
+requestAnimationFrame(initReveal);
+
+</script>
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  document.querySelectorAll('#mainNav a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+</script>
+</body>
+</html>

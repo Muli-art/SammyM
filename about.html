@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Sammy Mutinda</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-color: #fbfaf8;
+    --text-main: #111111;
+    --text-muted: #666666;
+    --text-light: #999999;
+    --border-color: #e5e4e0;
+    --accent: #111111;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --transition: all 0.3s ease-in-out;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(251, 250, 248, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    margin-top: 80px;
+    padding: 80px 5vw 60px;
+    border-bottom: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw;
+    align-items: end;
+    background: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: 'ABOUT';
+    position: absolute;
+    top: 50%;
+    right: -2vw;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-size: clamp(80px, 14vw, 180px);
+    font-weight: 700;
+    color: rgba(0,0,0,0.03);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 2;
+  }
+
+  .page-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-family: var(--mono);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .page-tag::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--text-light);
+  }
+
+  .page-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 5.5rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+  }
+
+  .page-hero h1 em {
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  .hero-right {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 8px;
+  }
+
+  .hero-bio-intro {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    border-left: 2px solid var(--border-color);
+    padding-left: 28px;
+    font-weight: 300;
+  }
+
+  @media (max-width: 900px) {
+    .page-hero { grid-template-columns: 1fr; gap: 32px; }
+    .page-hero::before { display: none; }
+  }
+
+  /* ─── MAIN LAYOUT ─── */
+  .about-body {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1100px) {
+    .about-body { grid-template-columns: 1fr; }
+  }
+
+  /* ─── PORTRAIT BLOCK ─── */
+  .portrait-section {
+    padding: 80px 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .portrait-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .portrait-main {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--border-color);
+    position: relative;
+  }
+
+  .portrait-main img, .portrait-side img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .portrait-main:hover img, .portrait-side:hover img { transform: scale(1.04); }
+
+  .portrait-side-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .portrait-side {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    background: var(--border-color);
+  }
+
+  .portrait-caption {
+    margin-top: 16px;
+    font-size: 0.7rem;
+    font-family: var(--mono);
+    letter-spacing: 0.12em;
+    color: var(--text-light);
+    text-transform: uppercase;
+  }
+
+  /* ─── FULL BIO ─── */
+  .bio-section {
+    max-width: 720px;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-family: var(--mono);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+    max-width: 60px;
+  }
+
+  .bio-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  .bio-section h2 em { font-style: italic; color: var(--text-muted); }
+
+  .bio-text {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  .bio-text p { margin-bottom: 20px; }
+  .bio-text p:last-child { margin-bottom: 0; }
+
+  .bio-pull-quote {
+    margin: 44px 0;
+    padding: 36px 40px;
+    border-left: 3px solid var(--text-main);
+    background: #f4f3f0;
+  }
+
+  .bio-pull-quote p {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-main);
+    margin: 0;
+  }
+
+  /* ─── STATS ROW ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+    margin: 60px 5vw;
+  }
+
+  @media (max-width: 700px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .stat-cell {
+    background: var(--bg-color);
+    padding: 36px 28px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-family: var(--mono);
+  }
+
+  /* ─── WORKS IMAGE GRID ─── */
+  .works-gallery {
+    padding: 0 5vw 80px;
+  }
+
+  .works-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .works-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .works-gallery-item {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--border-color);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .works-gallery-item.tall { grid-row: span 2; aspect-ratio: unset; }
+
+  .works-gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .works-gallery-item:hover img { transform: scale(1.06); }
+
+  .works-gallery-item .overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 20px 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.55));
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .works-gallery-item:hover .overlay { opacity: 1; }
+
+  .overlay-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 500;
+    display: block;
+  }
+
+  .overlay-meta {
+    font-size: 0.7rem;
+    opacity: 0.75;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    border-left: 1px solid var(--border-color);
+    background: #f8f7f5;
+  }
+
+  .sidebar-block {
+    padding: 40px 32px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sidebar-heading {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+    color: var(--text-light);
+    margin-bottom: 24px;
+  }
+
+  /* CV Download */
+  .cv-download-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cv-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    background: var(--text-main);
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border: 1px solid var(--text-main);
+  }
+
+  .cv-btn svg { flex-shrink: 0; }
+
+  .cv-btn:hover { background: transparent; color: var(--text-main); }
+
+  .cv-btn-outline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: transparent;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+  }
+
+  .cv-btn-outline:hover { border-color: var(--text-main); }
+
+  .cv-note {
+    font-size: 0.68rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+
+  /* Exhibitions List */
+  .expo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .expo-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .expo-item:last-child { border-bottom: none; }
+
+  .expo-year {
+    font-size: 0.65rem;
+    font-family: var(--mono);
+    color: var(--text-light);
+    letter-spacing: 0.1em;
+  }
+
+  .expo-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-main);
+    line-height: 1.3;
+  }
+
+  .expo-venue {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* Skills Tags */
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 6px 14px;
+    border: 1px solid var(--border-color);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    background: var(--bg-color);
+    transition: var(--transition);
+    cursor: default;
+  }
+
+  .tag:hover { border-color: var(--text-main); color: var(--text-main); }
+
+  /* Press */
+  .press-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .press-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .press-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .press-pub {
+    font-size: 0.65rem;
+    font-family: var(--mono);
+    color: var(--text-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .press-title {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.4;
+  }
+
+  .press-link {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    transition: color 0.2s;
+  }
+
+  .press-link:hover { color: var(--text-main); }
+
+  /* Contact in sidebar */
+  .contact-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .contact-item a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item a:hover { color: var(--text-main); }
+
+  .contact-label {
+    font-size: 0.62rem;
+    font-family: var(--mono);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 3px;
+  }
+
+  /* ─── VIDEO SECTION ─── */
+  .video-section {
+    padding: 100px 5vw;
+    background: var(--text-main);
+    color: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 80px
+    );
+    pointer-events: none;
+  }
+
+  .video-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--bg-color);
+  }
+
+  .video-title em { font-style: italic; opacity: 0.6; }
+
+  .video-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(251,250,248,0.4);
+    font-family: var(--mono);
+    text-align: right;
+    max-width: 220px;
+    line-height: 1.6;
+  }
+
+  .video-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .video-wrapper video,
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    display: block;
+  }
+
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: rgba(17,17,17,0.85);
+    backdrop-filter: blur(4px);
+    transition: opacity 0.4s;
+  }
+
+  .video-placeholder.hidden { opacity: 0; pointer-events: none; }
+
+  .play-btn {
+    width: 72px; height: 72px;
+    border: 2px solid rgba(251,250,248,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .play-btn:hover {
+    border-color: var(--bg-color);
+    background: rgba(251,250,248,0.1);
+    transform: scale(1.08);
+  }
+
+  .play-btn svg { margin-left: 4px; }
+
+  .video-placeholder-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: rgba(251,250,248,0.7);
+    letter-spacing: 0.05em;
+  }
+
+  .video-placeholder-meta {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(251,250,248,0.35);
+    font-family: var(--mono);
+  }
+
+  .video-caption {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .video-caption p {
+    font-size: 0.8rem;
+    color: rgba(251,250,248,0.45);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .video-caption .yt-link {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(251,250,248,0.5);
+    text-decoration: none;
+    font-family: var(--mono);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .video-caption .yt-link:hover { color: var(--bg-color); }
+
+  @media (max-width: 768px) {
+    .video-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .video-subtitle { text-align: left; }
+    .video-caption { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+    padding: 48px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-contact a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-contact a:hover { color: var(--text-main); }
+
+  .copyright {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    font-family: var(--mono);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  .fade-up-d1 { animation-delay: 0.1s; }
+  .fade-up-d2 { animation-delay: 0.2s; }
+  .fade-up-d3 { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="brand" href="index.html">
+    <span class="logo">Sammy Mutinda</span>
+    <span class="logo-sub">Contemporary Art</span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle">☰</button>
+
+  <nav id="mainNav">
+    <a href="index.html">Collection</a>
+    <a href="about.html" class="active">About</a>
+    <a href="works.html">Works</a>
+    <a href="exhibitions.html">Exhibitions</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-left fade-up fade-up-d1">
+    <span class="page-tag">Artist Biography</span>
+    <h1>Between <em>memory</em><br>and matter</h1>
+  </div>
+  <div class="hero-right fade-up fade-up-d2">
+    <p class="hero-bio-intro">
+      Sammy Mutinda is a Nairobi-born contemporary artist whose practice moves across painting, printmaking, drawing, and installation — rooted in the textures, rhythms, and deep memory of East Africa.
+    </p>
+  </div>
+</section>
+
+<!-- STATS ROW -->
+<div class="stats-row">
+  <div class="stat-cell">
+    <span class="stat-num">12+</span>
+    <span class="stat-label">Years in Practice</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num">38</span>
+    <span class="stat-label">Exhibitions</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num">14</span>
+    <span class="stat-label">Countries Shown</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num">200+</span>
+    <span class="stat-label">Works Created</span>
+  </div>
+</div>
+
+<!-- MAIN BODY -->
+<div class="about-body">
+
+  <!-- LEFT: Portrait + Bio + Works Grid -->
+  <div>
+    <section class="portrait-section">
+
+      <!-- Portrait Images -->
+      <div>
+        <div class="portrait-grid">
+          <div class="portrait-main">
+            <img src="10.JPG" alt="Sammy Mutinda — Studio Portrait">
+          </div>
+          <div class="portrait-side-col">
+            <div class="portrait-side">
+              <img src="1.JPG" alt="Sammy Mutinda at work">
+            </div>
+            <div class="portrait-side">
+              <img src="11.JPG" alt="Studio detail">
+            </div>
+          </div>
+        </div>
+        <p class="portrait-caption">↑ Mutinda in his Nairobi studio, 2024 — Photography by Studio Archive</p>
+      </div>
+
+      <!-- Full Biography -->
+      <div class="bio-section">
+        <span class="section-label">Full Biography</span>
+        <h2>Making art that<br><em>refuses to forget</em></h2>
+
+        <div class="bio-text">
+          <p>
+            Born in Nairobi, Kenya, Sammy Mutinda grew up between the red dust of the city's edges and the dense social fabric of its interior. His early years were shaped by the rhythms of communal life, storytelling passed between generations, and a landscape that refused simple categorisation — neither purely rural nor wholly urban.
+          </p>
+          <p>
+            He studied Fine Art at the University of Nairobi before undertaking advanced study in printmaking and visual culture. His formative encounters with the archive — with what is documented, what is excluded, and what persists only in the body — became the conceptual spine of his practice.
+          </p>
+
+          <div class="bio-pull-quote">
+            <p>"I am not making images of Africa. I am making images of time — time that has weight, texture, and refusal."</p>
+          </div>
+
+          <p>
+            Mutinda's paintings move between abstraction and figuration, often resisting resolution. Surfaces are built slowly — layer upon layer of acrylic, oil, and found pigment — so that looking at a finished work is also an archaeology. Forms emerge and retreat. Figures exist in states of becoming rather than arrival.
+          </p>
+          <p>
+            His printmaking practice parallels his paintings but with a distinct physical philosophy: the press as translator, the plate as memory. Editions are small, often unique. He is fascinated by the irreproducibility that hides inside every supposedly reproducible medium.
+          </p>
+          <p>
+            Installation work allows Mutinda to extend his concerns into space. Objects, cloth, earth, and sound are gathered and arranged in ways that transform a gallery room into a site of encounter — not exhibition. Visitors are not positioned as viewers but as participants in an ongoing conversation between matter and meaning.
+          </p>
+          <p>
+            His drawings — carried always in sketchbooks that have become their own form of archive — are rapid, searching, and densely observational. They record the world with the urgency of someone who knows that ordinary moments are always on the verge of disappearing.
+          </p>
+          <p>
+            Mutinda has shown extensively across East Africa, Europe, and North America. He has been the subject of solo exhibitions at Nairobi's Circle Art Gallery and residencies in Berlin, Lagos, and New York. His work is held in private and institutional collections across four continents.
+          </p>
+          <p>
+            He lives and works in Nairobi, Kenya.
+          </p>
+        </div>
+      </div>
+
+      <!-- Medium / Disciplines Tags -->
+      <div>
+        <span class="section-label">Disciplines & Media</span>
+        <div class="skills-tags">
+          <span class="tag">Painting</span>
+          <span class="tag">Oil on Canvas</span>
+          <span class="tag">Acrylic</span>
+          <span class="tag">Printmaking</span>
+          <span class="tag">Etching</span>
+          <span class="tag">Woodcut</span>
+          <span class="tag">Installation</span>
+          <span class="tag">Drawing</span>
+          <span class="tag">Mixed Media</span>
+          <span class="tag">Found Objects</span>
+          <span class="tag">Photography</span>
+          <span class="tag">Artist Books</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Works Image Grid -->
+    <section class="works-gallery">
+      <span class="section-label" style="padding: 0 0 32px 0;">Selected Works — Visual Overview</span>
+      <div class="works-gallery-grid">
+        <div class="works-gallery-item tall">
+          <img src="10.JPG" alt="Ukweli wa Ardhi">
+          <div class="overlay">
+            <span class="overlay-title">Ukweli wa Ardhi</span>
+            <span class="overlay-meta">Oil on Canvas · 90×120 cm · 2024</span>
+          </div>
+        </div>
+        <div class="works-gallery-item">
+          <img src="1.JPG" alt="Red Dust Memory">
+          <div class="overlay">
+            <span class="overlay-title">Red Dust Memory</span>
+            <span class="overlay-meta">Acrylic on Canvas · 2024</span>
+          </div>
+        </div>
+        <div class="works-gallery-item">
+          <img src="11.JPG" alt="Between Rivers">
+          <div class="overlay">
+            <span class="overlay-title">Between Rivers</span>
+            <span class="overlay-meta">Mixed Media · 2024</span>
+          </div>
+        </div>
+        <div class="works-gallery-item">
+          <img src="12.JPG" alt="Form in Silence">
+          <div class="overlay">
+            <span class="overlay-title">Form in Silence</span>
+            <span class="overlay-meta">Bronze Sculpture · 2023</span>
+          </div>
+        </div>
+        <div class="works-gallery-item">
+          <img src="15.JPG" alt="Nocturne No. 3">
+          <div class="overlay">
+            <span class="overlay-title">Nocturne No. 3</span>
+            <span class="overlay-meta">Oil on Linen · 2023</span>
+          </div>
+        </div>
+        <div class="works-gallery-item">
+          <img src="16.JPG" alt="Golden Hour">
+          <div class="overlay">
+            <span class="overlay-title">Golden Hour, Maasai</span>
+            <span class="overlay-meta">Acrylic on Canvas · 2023</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- RIGHT: Sidebar -->
+  <aside class="sidebar">
+
+    <!-- CV Download -->
+    <div class="sidebar-block">
+      <p class="sidebar-heading">Curriculum Vitae</p>
+      <div class="cv-download-block">
+        <a href="SammyMutinda_CV.pdf" download class="cv-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download CV (PDF)
+        </a>
+        <a href="SammyMutinda_Portfolio.pdf" download class="cv-btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Portfolio
+        </a>
+        <p class="cv-note">Last updated January 2025. For press kits and high-resolution images, contact the studio directly.</p>
+      </div>
+    </div>
+
+    <!-- Selected Exhibitions -->
+    <div class="sidebar-block">
+      <p class="sidebar-heading">Selected Exhibitions</p>
+      <div class="expo-list">
+        <div class="expo-item">
+          <span class="expo-year">2024 — Solo</span>
+          <span class="expo-name">Soil and Sky</span>
+          <span class="expo-venue">Circle Art Gallery, Nairobi</span>
+        </div>
+        <div class="expo-item">
+          <span class="expo-year">2023 — Group</span>
+          <span class="expo-name">New Geographies</span>
+          <span class="expo-venue">Galerie Voss, Düsseldorf</span>
+        </div>
+        <div class="expo-item">
+          <span class="expo-year">2023 — Solo</span>
+          <span class="expo-name">The Body Remembers</span>
+          <span class="expo-venue">ARTSPLIT Lagos</span>
+        </div>
+        <div class="expo-item">
+          <span class="expo-year">2022 — Group</span>
+          <span class="expo-name">African Futures</span>
+          <span class="expo-venue">1-54 Art Fair, London</span>
+        </div>
+        <div class="expo-item">
+          <span class="expo-year">2021 — Solo</span>
+          <span class="expo-name">Nocturne</span>
+          <span class="expo-venue">Kuona Trust, Nairobi</span>
+        </div>
+        <div class="expo-item">
+          <span class="expo-year">2020 — Group</span>
+          <span class="expo-name">Pandemic Archives</span>
+          <span class="expo-venue">Online / International</span>
+        </div>
+        <div class="expo-item">
+          <span class="expo-year">2019 — Residency</span>
+          <span class="expo-name">Triangle Arts Trust</span>
+          <span class="expo-venue">Brooklyn, New York</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="sidebar-block">
+      <p class="sidebar-heading">Education</p>
+      <div class="expo-list">
+        <div class="expo-item">
+          <span class="expo-year">2015</span>
+          <span class="expo-name">MFA — Fine Art</span>
+          <span class="expo-venue">University of Nairobi</span>
+        </div>
+        <div class="expo-item">
+          <span class="expo-year">2012</span>
+          <span class="expo-name">BA (Hons) — Fine Art &amp; Design</span>
+          <span class="expo-venue">Kenyatta University, Nairobi</span>
+        </div>
+        <div class="expo-item">
+          <span class="expo-year">2017</span>
+          <span class="expo-name">Printmaking Workshop</span>
+          <span class="expo-venue">Künstlerhaus Bethanien, Berlin</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Press -->
+    <div class="sidebar-block">
+      <p class="sidebar-heading">Press & Publications</p>
+      <div class="press-list">
+        <div class="press-item">
+          <span class="press-pub">The East African — 2024</span>
+          <span class="press-title">"Mutinda's canvases carry the weight of collective memory"</span>
+          <a href="#" class="press-link">Read article →</a>
+        </div>
+        <div class="press-item">
+          <span class="press-pub">ArtAfrica Magazine — 2023</span>
+          <span class="press-title">"Ten painters redefining the African contemporary"</span>
+          <a href="#" class="press-link">Read article →</a>
+        </div>
+        <div class="press-item">
+          <span class="press-pub">Frieze Online — 2022</span>
+          <span class="press-title">"Soil, Memory, and Form: New Voices from East Africa"</span>
+          <a href="#" class="press-link">Read article →</a>
+        </div>
+        <div class="press-item">
+          <span class="press-pub">Daily Nation Arts — 2021</span>
+          <span class="press-title">"Nairobi's most compelling studio practice"</span>
+          <a href="#" class="press-link">Read article →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="sidebar-block">
+      <p class="sidebar-heading">Studio Contact</p>
+      <div class="contact-list">
+        <div class="contact-item">
+          <p class="contact-label">Email</p>
+          <a href="mailto:mutindasammy17@gmail.com">mutindasammy17@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Phone / WhatsApp</p>
+          <a href="tel:+254710540657">+254 710 540 657</a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Based in</p>
+          <a href="#">Nairobi, Kenya</a>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Represented by</p>
+          <a href="#">Circle Art Agency, Nairobi</a>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+  <div class="video-header">
+    <h2 class="video-title">The studio <em>in motion</em></h2>
+    <p class="video-subtitle">A documentary portrait of the artist at work — process, practice, and perspective.</p>
+  </div>
+
+  <div class="video-wrapper" id="videoWrapper">
+    <!-- Replace src with actual video file or YouTube embed -->
+    <iframe
+      id="mainVideo"
+      src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&rel=0&modestbranding=1"
+      title="Sammy Mutinda — Studio Documentary"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="display:none;">
+    </iframe>
+
+    <!-- Placeholder shown until play is pressed -->
+    <div class="video-placeholder" id="videoPlaceholder">
+      <button class="play-btn" id="playBtn" aria-label="Play video">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(251,250,248,0.9)">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+      </button>
+      <p class="video-placeholder-title">Sammy Mutinda — Studio Film, 2024</p>
+      <p class="video-placeholder-meta">18 min · Directed by Archive Studio</p>
+    </div>
+  </div>
+
+  <div class="video-caption">
+    <p>A behind-the-scenes portrait of Mutinda's Nairobi studio — documenting his process across painting, printmaking, and installation. Filmed over three weeks, the documentary captures the quiet hours of building a work as much as the moment of completion.</p>
+    <a href="https://youtube.com" target="_blank" rel="noopener" class="yt-link">
+      Watch on YouTube
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-contact">
+    <a href="mailto:mutindasammy17@gmail.com">mutindasammy17@gmail.com</a>
+    <a href="tel:+254710540657">+254 710 540 657</a>
+  </div>
+  <p class="copyright">&copy; 2025 Sammy Mutinda. All rights reserved.</p>
+</footer>
+
+<script>
+  // Play button reveals actual iframe
+  document.getElementById('playBtn').addEventListener('click', () => {
+    const placeholder = document.getElementById('videoPlaceholder');
+    const iframe = document.getElementById('mainVideo');
+    placeholder.classList.add('hidden');
+    iframe.style.display = 'block';
+    // Autoplay when revealed
+    const src = iframe.src;
+    iframe.src = src + (src.includes('?') ? '&autoplay=1' : '?autoplay=1');
+  });
+</script>
+
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  document.querySelectorAll('#mainNav a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>
