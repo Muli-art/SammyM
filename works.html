@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Works — Sammy Mutinda</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-color: #fbfaf8;
+    --text-main: #111111;
+    --text-muted: #666666;
+    --text-light: #999999;
+    --border-color: #e5e4e0;
+    --accent: #111111;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --transition: all 0.3s ease-in-out;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(251, 250, 248, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+
+
+  /* ─── WORKS HERO ─── */
+  .works-hero {
+    margin-top: 80px;
+    position: relative;
+    background: var(--text-main);
+    color: var(--bg-color);
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 5vw 60px;
+    overflow: hidden;
+  }
+
+  .works-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      url('images/10.JPG');
+    background-size: cover;
+    background-position: center 30%;
+    filter: brightness(0.25) saturate(0.5);
+    transition: filter 0.6s;
+  }
+
+  .works-hero:hover .works-hero-bg { filter: brightness(0.3) saturate(0.6); }
+
+  .works-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  .works-kicker {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(251,250,248,0.45);
+    font-family: var(--mono);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .works-kicker::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: rgba(251,250,248,0.35);
+    display: inline-block;
+  }
+
+  .works-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 500;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: rgba(251,250,248,0.95);
+    margin-bottom: 28px;
+  }
+
+  .works-hero h1 em {
+    font-style: italic;
+    color: rgba(251,250,248,0.45);
+  }
+
+  .works-hero-desc {
+    font-size: 1rem;
+    color: rgba(251,250,248,0.55);
+    max-width: 520px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ─── CATEGORY TABS ─── */
+  .category-nav {
+    position: sticky;
+    top: 81px;
+    z-index: 90;
+    background: rgba(251,250,248,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 5vw;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .category-nav::-webkit-scrollbar { display: none; }
+
+  .cat-tab {
+    padding: 20px 28px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: var(--transition);
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: var(--sans);
+    position: relative;
+  }
+
+  .cat-tab .cat-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    background: var(--border-color);
+    border-radius: 50%;
+    font-size: 0.55rem;
+    margin-left: 8px;
+    transition: var(--transition);
+  }
+
+  .cat-tab.active {
+    color: var(--text-main);
+    border-bottom-color: var(--text-main);
+  }
+
+  .cat-tab.active .cat-count {
+    background: var(--text-main);
+    color: var(--bg-color);
+  }
+
+  .cat-tab:hover { color: var(--text-muted); }
+
+  /* ─── CATEGORY SECTIONS ─── */
+  .category-section {
+    padding: 80px 5vw;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .cat-section-header {
+    margin-bottom: 60px;
+  }
+
+  .cat-section-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-family: var(--mono);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cat-section-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--border-color);
+    display: inline-block;
+  }
+
+  .cat-section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 5.5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--text-main);
+    margin-bottom: 20px;
+  }
+
+  .cat-section-title em {
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  .cat-section-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ─── PRINTMAKING LAYOUT: editorial masonry ─── */
+  .print-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 60px;
+    gap: 16px;
+  }
+
+  .print-item { position: relative; overflow: hidden; background: var(--border-color); cursor: pointer; }
+  .print-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .print-item:hover img { transform: scale(1.06); }
+
+  .print-item-1 { grid-column: 1 / 6; grid-row: 1 / 8; }
+  .print-item-2 { grid-column: 6 / 10; grid-row: 1 / 5; }
+  .print-item-3 { grid-column: 10 / 13; grid-row: 1 / 6; }
+  .print-item-4 { grid-column: 6 / 10; grid-row: 5 / 9; }
+  .print-item-5 { grid-column: 10 / 13; grid-row: 6 / 9; }
+  .print-item-6 { grid-column: 1 / 4; grid-row: 8 / 13; }
+  .print-item-7 { grid-column: 4 / 9; grid-row: 8 / 13; }
+  .print-item-8 { grid-column: 9 / 13; grid-row: 9 / 13; }
+
+  @media (max-width: 900px) {
+    .print-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
+    }
+    .print-item, .print-item-1, .print-item-2, .print-item-3,
+    .print-item-4, .print-item-5, .print-item-6, .print-item-7, .print-item-8 {
+      grid-column: auto;
+      grid-row: auto;
+      aspect-ratio: 4/5;
+    }
+  }
+
+  /* Overlay for all work items */
+  .work-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 22px 22px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .print-item:hover .work-overlay { opacity: 1; }
+
+  .work-overlay-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .work-overlay-meta {
+    font-size: 0.65rem;
+    opacity: 0.65;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+  }
+
+  /* ─── PROCESS STRIP (Printmaking) ─── */
+  .process-strip {
+    margin-top: 48px;
+    padding: 36px 40px;
+    border: 1px solid var(--border-color);
+    background: #f4f3f0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border-color);
+  }
+
+  .process-step {
+    background: #f4f3f0;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step-num {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-light);
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .step-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .process-strip { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ─── INSTALLATION LAYOUT: immersive full-width ─── */
+
+  .install-hero-image {
+    width: 100%;
+    aspect-ratio: 21/9;
+    overflow: hidden;
+    background: var(--text-main);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .install-hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
+    opacity: 0.85;
+  }
+
+  .install-hero-image:hover img { transform: scale(1.03); opacity: 1; }
+
+  .install-hero-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 48px 40px 32px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .install-hero-caption h3 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .install-hero-caption p {
+    font-size: 0.72rem;
+    opacity: 0.55;
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-align: right;
+    max-width: 260px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .install-hero-image { aspect-ratio: 16/9; }
+    .install-hero-caption { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .install-hero-caption p { text-align: left; }
+  }
+
+  .install-sub-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .install-sub-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .install-sub-item {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--border-color);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .install-sub-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .install-sub-item:hover img { transform: scale(1.06); }
+  .install-sub-item:hover .work-overlay { opacity: 1; }
+
+  /* Statement Block (Installation) */
+  .install-statement {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .install-statement { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .install-statement-text h3 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .install-statement-text h3 em { font-style: italic; color: var(--text-muted); }
+
+  .install-statement-text p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  .install-statement-image {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--border-color);
+  }
+
+  .install-statement-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ─── DRAWING LAYOUT: archive / notebook aesthetic ─── */
+
+  .drawing-intro-block {
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .drawing-intro-block { grid-template-columns: 1fr; }
+  }
+
+  .drawing-intro-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+
+  .drawing-intro-num {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--border-color);
+  }
+
+  .drawing-intro-text {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* Drawing grid: ruled paper look */
+  .drawing-archive-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+  }
+
+  @media (max-width: 900px) {
+    .drawing-archive-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 500px) {
+    .drawing-archive-grid { grid-template-columns: 1fr; }
+  }
+
+  .drawing-cell {
+    background: var(--bg-color);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: var(--transition);
+  }
+
+  .drawing-cell:hover { background: #f4f3f0; }
+
+  .drawing-cell-img {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #eeedea;
+    position: relative;
+  }
+
+  .drawing-cell-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(25%);
+    transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  .drawing-cell:hover .drawing-cell-img img {
+    filter: grayscale(0%);
+    transform: scale(1.04);
+  }
+
+  .drawing-cell-info {
+    padding: 18px 18px 22px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .drawing-cell-series {
+    font-size: 0.6rem;
+    font-family: var(--mono);
+    letter-spacing: 0.18em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .drawing-cell-title {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text-main);
+  }
+
+  .drawing-cell-meta {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    margin-top: 6px;
+    font-family: var(--mono);
+  }
+
+  /* Wide drawing feature */
+  .drawing-wide-feature {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .drawing-wide-feature { grid-template-columns: 1fr; }
+  }
+
+  .drawing-wide-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--border-color);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .drawing-wide-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .drawing-wide-img:hover img { transform: scale(1.04); }
+
+  .drawing-wide-caption {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .drawing-wide-caption h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .drawing-wide-caption h3 em { font-style: italic; color: var(--text-muted); }
+
+  .drawing-wide-caption p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .drawing-wide-caption .view-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: var(--sans);
+    font-weight: 500;
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .drawing-wide-caption .view-link:hover { opacity: 0.6; }
+
+  /* ─── CTA STRIP ─── */
+  .cta-strip {
+    padding: 80px 5vw;
+    background: var(--text-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .cta-text h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--bg-color);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .cta-text h2 em { font-style: italic; opacity: 0.5; }
+
+  .cta-text p {
+    font-size: 0.9rem;
+    color: rgba(251,250,248,0.5);
+    max-width: 400px;
+    line-height: 1.7;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .cta-btn-primary {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--bg-color);
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border: 1px solid var(--bg-color);
+  }
+
+  .cta-btn-primary:hover { background: transparent; color: var(--bg-color); }
+
+  .cta-btn-secondary {
+    display: inline-block;
+    padding: 16px 32px;
+    background: transparent;
+    color: rgba(251,250,248,0.6);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border: 1px solid rgba(251,250,248,0.2);
+  }
+
+  .cta-btn-secondary:hover { border-color: rgba(251,250,248,0.6); color: var(--bg-color); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+    padding: 48px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-contact { display: flex; flex-direction: column; gap: 6px; }
+
+  .footer-contact a {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-contact a:hover { color: var(--text-main); }
+
+  .copyright {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    font-family: var(--mono);
+  }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(10,10,10,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .lb-close {
+    position: absolute;
+    top: 24px; right: 28px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+
+  .lb-close:hover { border-color: #fff; color: #fff; }
+
+  .lb-img-container {
+    max-width: 85vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lb-img-container img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Section bg alternation ─── */
+  #installation { background: #f4f3f0; }
+  #drawing { background: var(--bg-color); }
+
+  /* Hover label on install items */
+  .install-sub-item:hover .work-overlay { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="brand" href="index.html">
+    <span class="logo">Sammy Mutinda</span>
+    <span class="logo-sub">Contemporary Art</span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle">☰</button>
+
+  <nav id="mainNav">
+    <a href="index.html">Collection</a>
+    <a href="about.html" class="active">About</a>
+    <a href="works.html">Works</a>
+    <a href="exhibitions.html">Exhibitions</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- WORKS HERO -->
+<section class="works-hero">
+  <div class="works-hero-bg"></div>
+  <div class="works-hero-content">
+    <span class="works-kicker">Selected Works — Archive</span>
+    <h1>Making<br><em>visible</em><br>what persists</h1>
+    <p class="works-hero-desc">Three bodies of practice — each a different conversation between the artist, the material, and the world. Printmaking. Installation. Drawing.</p>
+  </div>
+</section>
+
+<!-- CATEGORY NAV -->
+<nav class="category-nav" id="catNav">
+  <button class="cat-tab active" data-target="printmaking">
+    Printmaking <span class="cat-count">08</span>
+  </button>
+  <button class="cat-tab" data-target="installation">
+    Installation <span class="cat-count">06</span>
+  </button>
+  <button class="cat-tab" data-target="drawing">
+    Drawing <span class="cat-count">12</span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PRINTMAKING -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="category-section" id="printmaking">
+  <div class="cat-section-header reveal">
+    <div class="cat-section-eyebrow">I — The Press as Memory</div>
+    <h2 class="cat-section-title">Print<em>making</em></h2>
+    <p class="cat-section-desc">
+      Mutinda's printmaking begins with the plate as archive. Each etching, woodcut, or linocut carries the history of its own making — the pressure, the error, the happy accident. Editions are deliberately small; often unique. The press translates what the hand knows.
+    </p>
+  </div>
+
+  <!-- Masonry Grid -->
+  <div class="print-grid reveal">
+    <div class="print-item print-item-1">
+      <img src="16.jpg" alt="Erosion Study I">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Erosion Study I</span>
+        <span class="work-overlay-meta">Etching · Edition 1/5 · 2024</span>
+      </div>
+    </div>
+    <div class="print-item print-item-2">
+      <img src="1.jpg" alt="Night Register">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Night Register</span>
+        <span class="work-overlay-meta">Woodcut · Unique · 2024</span>
+      </div>
+    </div>
+    <div class="print-item print-item-3">
+      <img src="12.jpg" alt="Soil Composition">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Soil Composition</span>
+        <span class="work-overlay-meta">Linocut · Edition 3/8 · 2023</span>
+      </div>
+    </div>
+    <div class="print-item print-item-4">
+      <img src="14.jpg" alt="Cartography of Absence">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Cartography of Absence</span>
+        <span class="work-overlay-meta">Drypoint · 2023</span>
+      </div>
+    </div>
+    <div class="print-item print-item-5">
+      <img src="15.jpg" alt="Red Field">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Red Field</span>
+        <span class="work-overlay-meta">Reduction Linocut · 2023</span>
+      </div>
+    </div>
+    <div class="print-item print-item-6">
+      <img src="16.jpg" alt="Topography of Return">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Topography of Return</span>
+        <span class="work-overlay-meta">Screenprint · 2022</span>
+      </div>
+    </div>
+    <div class="print-item print-item-7">
+      <img src="10.jpg" alt="Border Study III">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Border Study III</span>
+        <span class="work-overlay-meta">Etching & Aquatint · 2022</span>
+      </div>
+    </div>
+    <div class="print-item print-item-8">
+      <img src="1.jpg" alt="Residue">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Residue</span>
+        <span class="work-overlay-meta">Monotype · 2021</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Process Strip -->
+  <div class="process-strip reveal">
+    <div class="process-step">
+      <span class="step-num">01 — Prepare</span>
+      <span class="step-title">The Plate</span>
+      <p class="step-desc">Copper, zinc, or linoleum — each surface demands a different relationship. The plate receives the drawing. It remembers everything.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">02 — Mark</span>
+      <span class="step-title">The Incision</span>
+      <p class="step-desc">The mark is made in reverse. What is taken away — gouged, etched, dissolved — becomes what is seen. Subtraction as language.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">03 — Ink</span>
+      <span class="step-title">The Preparation</span>
+      <p class="step-desc">Ink is mixed by hand. Sometimes ochre and black, sometimes a deep burgundy. The weight and temperature of the day affects the result.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">04 — Press</span>
+      <span class="step-title">The Transfer</span>
+      <p class="step-desc">Pressure, felt, paper. The press translates. What emerges is always different from what was intended — and always better for it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- INSTALLATION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="category-section" id="installation">
+  <div class="cat-section-header reveal">
+    <div class="cat-section-eyebrow">II — Space as Conversation</div>
+    <h2 class="cat-section-title">Instal<em>lation</em></h2>
+    <p class="cat-section-desc">
+      Installation allows Mutinda to bring time into physical space. Objects, cloth, earth, sound, and found material are gathered into configurations that transform a gallery into a site of encounter — not display. You are not a viewer. You are part of the work.
+    </p>
+  </div>
+
+  <!-- Hero Installation Image -->
+  <div class="install-hero-image reveal">
+    <img src="10.jpg" alt="Soil and Sky — Installation View, Circle Art Gallery, Nairobi, 2024">
+    <div class="install-hero-caption">
+      <h3>Soil and Sky</h3>
+      <p>Installation view — Circle Art Gallery, Nairobi · 2024 · Earth, cloth, found objects, sound · Variable dimensions</p>
+    </div>
+  </div>
+
+  <!-- Sub Grid -->
+  <div class="install-sub-grid reveal">
+    <div class="install-sub-item">
+      <img src="11.jpg" alt="The Body Remembers">
+      <div class="work-overlay">
+        <span class="work-overlay-title">The Body Remembers</span>
+        <span class="work-overlay-meta">Installation · Lagos, 2023</span>
+      </div>
+    </div>
+    <div class="install-sub-item">
+      <img src="12.jpg" alt="Archive of the Unnamed">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Archive of the Unnamed</span>
+        <span class="work-overlay-meta">Installation · Nairobi, 2022</span>
+      </div>
+    </div>
+    <div class="install-sub-item">
+      <img src="14.jpg" alt="Threshold">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Threshold</span>
+        <span class="work-overlay-meta">Installation · Berlin, 2021</span>
+      </div>
+    </div>
+    <div class="install-sub-item">
+      <img src="15.jpg" alt="Conversations with Dust">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Conversations with Dust</span>
+        <span class="work-overlay-meta">Installation · New York, 2019</span>
+      </div>
+    </div>
+    <div class="install-sub-item">
+      <img src="16.jpg" alt="Red Hours">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Red Hours</span>
+        <span class="work-overlay-meta">Installation · Nairobi, 2018</span>
+      </div>
+    </div>
+    <div class="install-sub-item">
+      <img src="1.jpg" alt="Residency Work">
+      <div class="work-overlay">
+        <span class="work-overlay-title">Gathering</span>
+        <span class="work-overlay-meta">Installation · London, 2022</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statement Block -->
+  <div class="install-statement reveal">
+    <div class="install-statement-text">
+      <h3>"The room becomes<br><em>the work</em>"</h3>
+      <p>
+        Mutinda constructs installations that take their materials seriously — earth brought from specific places, cloth that has absorbed specific histories, objects that carry specific uses. Nothing is decorative. Everything has been chosen for what it knows.
+        <br><br>
+        The work asks the visitor to slow down. To sense the weight of the gathered things. To understand that they are standing inside an argument — one that is patient, persistent, and refuses resolution.
+      </p>
+    </div>
+    <div class="install-statement-image">
+      <img src="images/15.jpg" alt="Installation detail">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- DRAWING -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="category-section" id="drawing">
+  <div class="cat-section-header reveal">
+    <div class="cat-section-eyebrow">III — The Urgent Line</div>
+    <h2 class="cat-section-title">Draw<em>ing</em></h2>
+    <p class="cat-section-desc">
+      The sketchbook is always open. Drawing is how Mutinda thinks — quickly, urgently, without resolution. Figures appear in the middle of transformation. Landscapes compress years. The line is the record of the hand in real time.
+    </p>
+  </div>
+
+  <!-- Archive Intro -->
+  <div class="drawing-intro-block reveal">
+    <div>
+      <p class="drawing-intro-label">Archive — 2013 to present</p>
+      <div class="drawing-intro-num">47+</div>
+      <p class="drawing-intro-label" style="margin-top: 8px;">sketchbooks filled</p>
+    </div>
+    <div>
+      <p class="drawing-intro-text">
+        The sketchbook is Mutinda's primary tool — a running archive of observation, experiment, and abandonment. Carried everywhere. Nothing is edited before it is entered. The drawings are fast and searching, dense with correction, alive with the energy of not-yet-knowing. From these pages, everything else grows.
+        <br><br>
+        Selected sketchbook pages, studies, and finished drawings are shown here from the archive spanning 2013 to the present.
+      </p>
+    </div>
+  </div>
+
+  <!-- Archive Grid -->
+  <div class="drawing-archive-grid reveal">
+    <div class="drawing-cell">
+      <div class="drawing-cell-img">
+        <img src="1.jpg" alt="Figure Study, Kibera Series">
+      </div>
+      <div class="drawing-cell-info">
+        <p class="drawing-cell-series">Kibera Series · No. 12</p>
+        <p class="drawing-cell-title">Figure Study — Standing</p>
+        <p class="drawing-cell-meta">Graphite on paper · 2024</p>
+      </div>
+    </div>
+    <div class="drawing-cell">
+      <div class="drawing-cell-img">
+        <img src="11.jpg" alt="Market Interior">
+      </div>
+      <div class="drawing-cell-info">
+        <p class="drawing-cell-series">Nairobi Studies · No. 7</p>
+        <p class="drawing-cell-title">Market Interior</p>
+        <p class="drawing-cell-meta">Ink on paper · 2024</p>
+      </div>
+    </div>
+    <div class="drawing-cell">
+      <div class="drawing-cell-img">
+        <img src="12.jpg" alt="Nocturne Study IV">
+      </div>
+      <div class="drawing-cell-info">
+        <p class="drawing-cell-series">Nocturne Studies · No. 4</p>
+        <p class="drawing-cell-title">Nocturne Study IV</p>
+        <p class="drawing-cell-meta">Charcoal on paper · 2023</p>
+      </div>
+    </div>
+    <div class="drawing-cell">
+      <div class="drawing-cell-img">
+        <img src="14.jpg" alt="Hands — Resting">
+      </div>
+      <div class="drawing-cell-info">
+        <p class="drawing-cell-series">Observation · No. 23</p>
+        <p class="drawing-cell-title">Hands — Resting</p>
+        <p class="drawing-cell-meta">Graphite · 2023</p>
+      </div>
+    </div>
+    <div class="drawing-cell">
+      <div class="drawing-cell-img">
+        <img src="15.jpg" alt="Landscape, Rift Valley">
+      </div>
+      <div class="drawing-cell-info">
+        <p class="drawing-cell-series">Rift Valley · No. 3</p>
+        <p class="drawing-cell-title">Landscape, Rift Valley</p>
+        <p class="drawing-cell-meta">Pen on paper · 2022</p>
+      </div>
+    </div>
+    <div class="drawing-cell">
+      <div class="drawing-cell-img">
+        <img src="16.jpg" alt="Portrait of a Street">
+      </div>
+      <div class="drawing-cell-info">
+        <p class="drawing-cell-series">Urban Studies · No. 9</p>
+        <p class="drawing-cell-title">Portrait of a Street</p>
+        <p class="drawing-cell-meta">Mixed media · 2022</p>
+      </div>
+    </div>
+    <div class="drawing-cell">
+      <div class="drawing-cell-img">
+        <img src="10.jpg" alt="Seated Figure">
+      </div>
+      <div class="drawing-cell-info">
+        <p class="drawing-cell-series">Sketchbook · Page 114</p>
+        <p class="drawing-cell-title">Seated Figure</p>
+        <p class="drawing-cell-meta">Pen on sketchbook · 2021</p>
+      </div>
+    </div>
+    <div class="drawing-cell">
+      <div class="drawing-cell-img">
+        <img src="1.jpg" alt="Tree at Dusk">
+      </div>
+      <div class="drawing-cell-info">
+        <p class="drawing-cell-series">Natural Studies · No. 5</p>
+        <p class="drawing-cell-title">Tree at Dusk</p>
+        <p class="drawing-cell-meta">Charcoal on paper · 2020</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wide Feature Drawing -->
+  <div class="drawing-wide-feature reveal">
+    <div class="drawing-wide-img">
+      <img src="12.jpg" alt="The Crossing — Large Study">
+    </div>
+    <div class="drawing-wide-caption">
+      <span style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);">Featured Work</span>
+      <h3>The Crossing<br><em>— Large Study</em></h3>
+      <p>A large-format drawing made in a single session, without stopping. The scale forces a different kind of attention — the body must move to make the mark. The figure in motion becomes the drawing in motion.</p>
+      <a href="index.html" class="view-link">Enquire about this work →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="cta-text">
+    <h2>Acquire a work.<br><em>Begin a conversation.</em></h2>
+    <p>Works are available for private sale. Enquire directly with the artist's studio about availability, editions, and commissions.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="contact.html" class="cta-btn-primary">Contact the Studio</a>
+    <a href="index.html" class="cta-btn-secondary">View Collection</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-contact">
+    <a href="mailto:mutindasammy17@gmail.com">mutindasammy17@gmail.com</a>
+    <a href="tel:+254710540657">+254 710 540 657</a>
+  </div>
+  <p class="copyright">&copy; 2025 Sammy Mutinda. All rights reserved.</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lb-close" id="lbClose">✕</button>
+  <div class="lb-img-container">
+    <img id="lbImg" src="" alt="">
+  </div>
+</div>
+
+<script>
+  // ─── TAB NAV ───
+  const tabs = document.querySelectorAll('.cat-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = document.getElementById(tab.dataset.target);
+      if (target) {
+        const offset = document.getElementById('catNav').offsetHeight + 81;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ─── SCROLL SPY ───
+  const sections = ['printmaking', 'installation', 'drawing'];
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tabs.forEach(t => t.classList.remove('active'));
+        const active = document.querySelector(`[data-target="${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  // ─── REVEAL ON SCROLL ───
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ─── LIGHTBOX ───
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+
+  document.querySelectorAll('.print-item, .install-sub-item, .install-hero-image, .drawing-cell-img, .drawing-wide-img').forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      if (img) {
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', () => {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  lb.addEventListener('click', e => {
+    if (e.target === lb) {
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('active');
+  });
+
+  document.querySelectorAll('#mainNav a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>

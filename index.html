@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sammy Mutinda — Artist Portfolio</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─── RESET & VARIABLES ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-color: #fbfaf8;
+    --text-main: #111111;
+    --text-muted: #666666;
+    --text-light: #999999;
+    --border-color: #e5e4e0;
+    --accent: #111111;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --transition: all 0.3s ease-in-out;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(251, 250, 248, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+
+
+  .menu-toggle{
+  display:none;
+  background:none;
+  border:none;
+  font-size:28px;
+  color:var(--text-main);
+  cursor:pointer;
+}
+
+@media (max-width:768px){
+
+  header{
+    justify-content:space-between;
+    text-align:left;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:rgba(251,250,248,0.98);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-top:1px solid var(--border-color);
+    display:none;
+    flex-direction:column;
+    gap:0;
+    padding:15px 20px;
+  }
+
+  nav.active{
+    display:flex;
+  }
+
+  nav a{
+    padding:12px 0;
+    width:100%;
+  }
+}
+
+  /* ─── HERO SECTION ─── */
+  .hero {
+    margin-top: 80px;
+    min-height: 85vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5vw;
+    gap: 5vw;
+  }
+
+  .hero-content {
+    max-width: 600px;
+  }
+
+  .hero-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--text-main);
+    margin-bottom: 24px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .primary-btn {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--text-main);
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: var(--transition);
+    border: 1px solid var(--text-main);
+  }
+
+  .primary-btn:hover {
+    background: transparent;
+    color: var(--text-main);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 992px) {
+    .hero { grid-template-columns: 1fr; padding-top: 60px; min-height: auto; gap: 40px; }
+    .hero-content { text-align: center; margin: 0 auto; }
+    .hero-desc { margin-left: auto; margin-right: auto; }
+    .hero-image { height: 50vh; }
+  }
+
+  /* ─── GALLERY SECTION ─── */
+  .gallery-section {
+    padding: 100px 5vw;
+    background: #ffffff;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+
+  .section-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 768px) {
+    .section-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
+
+  /* ─── GRID ─── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 30px; } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .art-card {
+    display: flex;
+    flex-direction: column;
+    group: relative;
+  }
+
+  .art-card .img-wrap {
+    width: 100%;
+    aspect-ratio: 4/5; /* Ensures perfect alignment of all boxes */
+    overflow: hidden;
+    background: var(--border-color);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .art-card .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .art-card:hover .img-wrap img {
+    transform: scale(1.05);
+  }
+
+  .art-info {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .art-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+
+  .art-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .art-price {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  .art-details {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  .enquire-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 12px 0;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .art-card:hover .enquire-btn {
+    border-color: var(--text-main);
+  }
+
+  .enquire-btn:hover {
+    background: var(--text-main);
+    color: var(--bg-color);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg-color);
+    padding: 60px 5vw 40px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .footer-contact {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+  }
+
+  .footer-contact a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    transition: opacity 0.2s;
+  }
+
+  .footer-contact a:hover {
+    opacity: 0.6;
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 600px) {
+    .footer-contact { flex-direction: column; gap: 15px; }
+  }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.98);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .lightbox-overlay.active { display: flex; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .lightbox-inner {
+    display: flex;
+    gap: 40px;
+    width: 90vw;
+    height: 85vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lb-img-wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .lb-img-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+
+  .lb-info {
+    width: 320px;
+    color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .lb-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .lb-artist {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 30px;
+  }
+
+  .lb-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+  }
+
+  .lb-detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #ccc;
+  }
+
+  .lb-detail-row strong { color: #fff; font-weight: 400; }
+
+  .lb-price {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .lb-enquire {
+    background: #fff;
+    color: #111;
+    border: none;
+    padding: 16px 0;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .lb-enquire:hover { background: #e0e0e0; }
+
+  .lb-controls {
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    display: flex;
+    gap: 15px;
+    z-index: 210;
+  }
+
+  .lb-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+
+  .lb-btn:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+  @media (max-width: 900px) {
+    .lightbox-inner { flex-direction: column; height: 100vh; padding: 80px 20px 40px; overflow-y: auto; gap: 20px; }
+    .lb-img-wrap { height: auto; max-height: 50vh; }
+    .lb-info { width: 100%; text-align: center; }
+    .lb-details { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
+    .lb-controls { top: 20px; right: 20px; }
+  }
+
+  /* ─── ENQUIRY MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(17,17,17,0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: #ffffff;
+    max-width: 500px;
+    width: 90vw;
+    padding: 50px 40px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover { color: var(--text-main); }
+
+  .modal-title {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .modal-artwork-name {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+  }
+
+  .form-row { margin-bottom: 20px; }
+
+  .form-row input,
+  .form-row textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    background: transparent;
+    padding: 12px 0;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+
+  .form-row input::placeholder,
+  .form-row textarea::placeholder { color: var(--text-light); }
+  .form-row input:focus,
+  .form-row textarea:focus { border-bottom-color: var(--text-main); }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--text-main);
+    color: #fff;
+    border: none;
+    padding: 16px;
+    margin-top: 10px;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .submit-btn:hover { background: #333; }
+
+  .whatsapp-note {
+    margin-top: 15px;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="brand" href="index.html">
+    <span class="logo">Sammy Mutinda</span>
+    <span class="logo-sub">Contemporary Art</span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle">☰</button>
+
+  <nav id="mainNav">
+    <a href="index.html">Collection</a>
+    <a href="about.html" class="active">About</a>
+    <a href="works.html">Works</a>
+    <a href="exhibitions.html">Exhibitions</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-label">2024 Original Works</span>
+    <h1 class="hero-title">Art that breathes <br><em>between worlds</em></h1>
+    <p class="hero-desc">Discover the latest collection of paintings and sculptures rooted in East African textures, deep memory, and profound form.</p>
+    <a href="#gallery" class="primary-btn">View the Collection</a>
+  </div>
+  <div class="hero-image">
+    <img src="6.jpg" alt="Featured Artwork">
+  </div>
+</section>
+
+<!-- GALLERY GRID -->
+<section class="gallery-section" id="gallery">
+  <div class="section-header">
+    <h2 class="section-title">Available Works</h2>
+    <span class="section-subtitle">Private Sales & Enquiries</span>
+  </div>
+
+  <div class="grid" id="artGrid">
+    <!-- Rendered via JS -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-contact">
+    <a href="mailto:mutindasammy17@gmail.com">mutindasammy17@gmail.com</a>
+    <a href="tel:+254710540657">+254 710 540 657</a>
+  </div>
+  <p class="copyright">&copy; 2024 MutindaSammy. All rights reserved.</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+  <div class="lb-controls">
+    <button class="lb-btn" id="lbPrev">&#8592;</button>
+    <button class="lb-btn" id="lbNext">&#8594;</button>
+    <button class="lb-btn" id="lbClose">✕</button>
+  </div>
+  
+  <div class="lightbox-inner">
+    <div class="lb-img-wrap">
+      <img id="lbImg" src="" alt="">
+    </div>
+    <div class="lb-info">
+      <p class="lb-artist">Sammy Mutinda</p>
+      <p class="lb-title" id="lbTitle"></p>
+      
+      <div class="lb-details">
+        <div class="lb-detail-row"><span>Medium</span><strong id="lbMedium"></strong></div>
+        <div class="lb-detail-row"><span>Dimensions</span><strong id="lbSize"></strong></div>
+        <div class="lb-detail-row"><span>Year</span><strong id="lbYear"></strong></div>
+      </div>
+      
+      <div class="lb-price" id="lbPrice"></div>
+      <button class="lb-enquire" id="lbEnquire">Enquire Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ENQUIRY MODAL -->
+<div class="modal-overlay" id="enquiryModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h3 class="modal-title">Enquire</h3>
+    <p class="modal-artwork-name" id="modalArtworkName"></p>
+    
+    <div class="form-row">
+      <input type="text" id="fieldName" placeholder="Your Full Name">
+    </div>
+    <div class="form-row">
+      <input type="email" id="fieldEmail" placeholder="Email Address">
+    </div>
+    <div class="form-row">
+      <input type="tel" id="fieldPhone" placeholder="Phone Number (Include Country Code)">
+    </div>
+    <div class="form-row">
+      <textarea id="fieldMessage" rows="3" placeholder="Any specific questions regarding shipping, framing, or details?"></textarea>
+    </div>
+    
+    <button class="submit-btn" id="submitEnquiry">Send via WhatsApp</button>
+    <p class="whatsapp-note">This will open WhatsApp directly to the artist's studio.</p>
+  </div>
+</div>
+
+<script>
+  // ─── ART DATA ───
+  const WHATSAPP = "254710540657"; // Replace with Sammy's WhatsApp Number
+
+  const artworks = [
+    {
+      title: "Ukweli wa Ardhi",
+      medium: "Oil on Canvas",
+      size: "90 × 120 cm",
+      year: 2024,
+      price: "KES 85,000",
+      img: "1.jpg"
+    },
+    {
+      title: "Red Dust Memory",
+      medium: "Acrylic on Canvas",
+      size: "60 × 80 cm",
+      year: 2024,
+      price: "KES 52,000",
+      img: "11.jpg"
+    },
+    {
+      title: "Between Rivers",
+      medium: "Mixed Media",
+      size: "100 × 100 cm",
+      year: 2024,
+      price: "KES 97,000",
+      img: "12.jpg"
+    },
+    {
+      title: "Form in Silence",
+      medium: "Bronze Sculpture",
+      size: "H 45 cm",
+      year: 2023,
+      price: "KES 148,000",
+      img: "15.jpg"
+    },
+    {
+      title: "Nocturne No. 3",
+      medium: "Oil on Linen",
+      size: "70 × 90 cm",
+      year: 2023,
+      price: "KES 74,000",
+      img: "16.jpg"
+    },
+    {
+      title: "Golden Hour, Maasai",
+      medium: "Acrylic on Canvas",
+      size: "80 × 100 cm",
+      year: 2023,
+      price: "KES 66,000",
+      img: "14.jpg"
+    }
+  ];
+
+  // ─── BUILD GRID ───
+  const grid = document.getElementById('artGrid');
+
+  artworks.forEach((art, i) => {
+    const card = document.createElement('div');
+    card.className = 'art-card';
+    card.innerHTML = `
+      <div class="img-wrap" onclick="openLightbox(${i})">
+        <img src="${art.img}" alt="${art.title}" loading="lazy">
+      </div>
+      <div class="art-info">
+        <div class="art-title-row">
+          <span class="art-title">${art.title}</span>
+          <span class="art-price">${art.price}</span>
+        </div>
+        <div class="art-details">${art.medium}<br>${art.size} · ${art.year}</div>
+        <button class="enquire-btn" onclick="openEnquiry(${i})">Enquire</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // ─── LIGHTBOX ───
+  let currentIdx = 0;
+  const lb = document.getElementById('lightbox');
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    renderLightbox();
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderLightbox() {
+    const art = artworks[currentIdx];
+    document.getElementById('lbImg').src = art.img;
+    document.getElementById('lbTitle').textContent = art.title;
+    document.getElementById('lbMedium').textContent = art.medium;
+    document.getElementById('lbSize').textContent = art.size;
+    document.getElementById('lbYear').textContent = art.year;
+    document.getElementById('lbPrice').textContent = art.price;
+  }
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => { currentIdx = (currentIdx - 1 + artworks.length) % artworks.length; renderLightbox(); });
+  document.getElementById('lbNext').addEventListener('click', () => { currentIdx = (currentIdx + 1) % artworks.length; renderLightbox(); });
+  document.getElementById('lbEnquire').addEventListener('click', () => { closeLightbox(); openEnquiry(currentIdx); });
+
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+
+  function closeLightbox() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ─── ENQUIRY MODAL ───
+  let enquiryTarget = null;
+
+  function openEnquiry(idx) {
+    enquiryTarget = artworks[idx];
+    document.getElementById('modalArtworkName').textContent = `Enquiring about: "${enquiryTarget.title}" (${enquiryTarget.price})`;
+    document.getElementById('fieldName').value = '';
+    document.getElementById('fieldEmail').value = '';
+    document.getElementById('fieldPhone').value = '';
+    document.getElementById('fieldMessage').value = '';
+    
+    document.getElementById('enquiryModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('enquiryModal').addEventListener('click', (e) => { if (e.target.id === 'enquiryModal') closeModal(); });
+
+  function closeModal() {
+    document.getElementById('enquiryModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('submitEnquiry').addEventListener('click', () => {
+    const name = document.getElementById('fieldName').value.trim();
+    const email = document.getElementById('fieldEmail').value.trim();
+    const phone = document.getElementById('fieldPhone').value.trim();
+    const msg = document.getElementById('fieldMessage').value.trim();
+
+    if (!name || !email) {
+      alert('Please fill in your name and email address.');
+      return;
+    }
+
+    const art = enquiryTarget;
+    const text = `*New Studio Enquiry*\n\n*Artwork:* ${art.title}\n*Medium:* ${art.medium}\n*Price:* ${art.price}\n\n*Client Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Message:* ${msg || 'No specific message.'}`;
+    
+    const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+    closeModal();
+  });
+</script>
+      d.innerHTML = `<div class="w-8 h-8 bg-gray-600 rounded-full"></div><span class="text-xs">+${id}</span>`;
+                list.appendChild(d);
+            });
+        }
+    </script>
+    <script>
+      // MOBILE MENU
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+
+menuToggle.addEventListener('click', () => {
+  mainNav.classList.toggle('active');
+});
+
+document.querySelectorAll('#mainNav a').forEach(link => {
+  link.addEventListener('click', () => {
+    mainNav.classList.remove('active');
+  });
+});
+    </script>
+</body>
+</html>
